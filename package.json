@@ -1,5 +1,5 @@
 {
-  "name": "googletag-writer",
+  "name": "metatag-writer",
   "version": "1.0.0",
   "description": "A simple Node.js utility to write MetaTag script blocks for the head of website html.",
   "main": "src/metatag-writer.js",
