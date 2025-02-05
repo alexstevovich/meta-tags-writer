@@ -2,12 +2,12 @@
   "name": "metatag-writer",
   "version": "1.0.0",
   "description": "A simple Node.js utility to write MetaTag script blocks for the head of website html.",
-  "main": "src/metatag-writer.js",
-  "types": "src/metatag-writer.ts",
-  "module": "src/metatag-writer.js",
+  "main": "src/metatag-writer.mjs",
+  "types": "src/metatag-writer.d.ts",
+  "module": "src/metatag-writer.mjs",
   "type": "module",
   "exports": {
-    "import": "./src/metatag-writer.js",
+    "import": "./src/metatag-writer.mjs",
     "require": "./src/metatag-writer.cjs"
   },
   "dependencies": {

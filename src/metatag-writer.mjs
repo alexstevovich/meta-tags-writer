@@ -4,8 +4,8 @@
  * A lightweight, modular, and professional-grade utility for generating HTML meta tags.
  * Supports SEO, Open Graph (Facebook, LinkedIn, Discord), and Twitter meta.
  * 
- * Fully modular (use individual writers or the full CommonMetaWriter)
- * Supports global formatting settings via GlobalConfig
+ * Fully modular (use individual writers or the full CommonMetaTagWriter)
+ * Supports global formatting settings via Config
  * Provides clear and well-structured API methods
  * Designed for server-side rendering (SSR) or static site generation (SSG)
  * 
@@ -14,7 +14,7 @@
  */
 
 // Global Configuration
-export const GlobalConfig = {
+export const Config = {
     /**
      * Determines whether generated meta tags should be formatted with new lines.
      * Set to `false` for a compact single-line format.
@@ -23,9 +23,9 @@ export const GlobalConfig = {
 };
 
 // SEO Meta Writer (Handles Core SEO Metadata)
-export class SEOMetaWriter {
+export class SEOMetaTagWriter {
     constructor() {
-        this.useNewLineBetweenEntries = GlobalConfig.useNewLineBetweenEntries;
+        this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
         this.title = undefined;
         this.description = undefined;
         this.keywords = undefined; // Optional, used by Bing/Yandex but ignored by Google
@@ -39,7 +39,7 @@ export class SEOMetaWriter {
      * Generates and returns the HTML meta tags for SEO metadata.
      * @returns {string} - The generated SEO meta tags.
      */
-    writeTags() {
+    write() {
         const tags = [];
         if (this.title) tags.push(`<title>${this.title}</title>`);
         if (this.description) tags.push(`<meta name="description" content="${this.description}">`);
@@ -56,9 +56,9 @@ export class SEOMetaWriter {
 }
 
 // Open Graph Meta Writer (Handles Facebook, LinkedIn, Discord Previews)
-export class OpenGraphMetaWriter {
+export class OpenGraphMetaTagWriter {
     constructor() {
-        this.useNewLineBetweenEntries = GlobalConfig.useNewLineBetweenEntries;
+        this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
         this.ogTitle = undefined;
         this.ogDescription = undefined;
         this.ogImage = undefined;
@@ -70,7 +70,7 @@ export class OpenGraphMetaWriter {
      * Generates and returns the HTML meta tags for Open Graph metadata.
      * @returns {string} - The generated Open Graph meta tags.
      */
-    writeTags() {
+    write() {
         const tags = [];
         if (this.ogTitle) tags.push(`<meta property="og:title" content="${this.ogTitle}">`);
         if (this.ogDescription) tags.push(`<meta property="og:description" content="${this.ogDescription}">`);
@@ -82,9 +82,9 @@ export class OpenGraphMetaWriter {
 }
 
 // Twitter Meta Writer (Handles Twitter Cards)
-export class TwitterMetaWriter {
+export class TwitterMetaTagWriter {
     constructor() {
-        this.useNewLineBetweenEntries = GlobalConfig.useNewLineBetweenEntries;
+        this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
         this.twitterTitle = undefined;
         this.twitterDescription = undefined;
         this.twitterImage = undefined;
@@ -95,7 +95,7 @@ export class TwitterMetaWriter {
      * Generates and returns the HTML meta tags for Twitter metadata.
      * @returns {string} - The generated Twitter meta tags.
      */
-    writeTags() {
+    write() {
         const tags = [];
         if (this.twitterCard) tags.push(`<meta name="twitter:card" content="${this.twitterCard}">`);
         if (this.twitterTitle) tags.push(`<meta name="twitter:title" content="${this.twitterTitle}">`);
@@ -106,9 +106,9 @@ export class TwitterMetaWriter {
 }
 
 // Page Meta Writer (Handles Charset, Viewport, Theme Color)
-export class PageMetaWriter {
+export class PageMetaTagWriter {
     constructor() {
-        this.useNewLineBetweenEntries = GlobalConfig.useNewLineBetweenEntries;
+        this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
         this.charset = "UTF-8";
         this.viewport = "width=device-width, initial-scale=1.0";
         this.themeColor = undefined;
@@ -118,7 +118,7 @@ export class PageMetaWriter {
      * Generates and returns the HTML meta tags for page-level settings.
      * @returns {string} - The generated page meta tags.
      */
-    writeTags() {
+    write() {
         const tags = [];
         if (this.charset) tags.push(`<meta charset="${this.charset}">`);
         if (this.viewport) tags.push(`<meta name="viewport" content="${this.viewport}">`);
@@ -128,13 +128,13 @@ export class PageMetaWriter {
 }
 
 // Common Meta Writer (Combines All Meta Writers)
-export class CommonMetaWriter {
+export class CommonMetaTagWriter {
     constructor() {
-        this.useNewLineBetweenEntries = GlobalConfig.useNewLineBetweenEntries;
-        this.page = new PageMetaWriter();
-        this.seo = new SEOMetaWriter();
-        this.og = new OpenGraphMetaWriter();
-        this.twitter = new TwitterMetaWriter();
+        this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
+        this.page = new PageMetaTagWriter();
+        this.seo = new SEOMetaTagWriter();
+        this.og = new OpenGraphMetaTagWriter();
+        this.twitter = new TwitterMetaTagWriter();
     }
 
     /**
@@ -167,14 +167,14 @@ export class CommonMetaWriter {
      * Generates and returns all combined meta tags.
      * @returns {string} - The full set of meta tags.
      */
-    generateMetaTags() {
+    write({newLine = false}) {
         return [
-            this.page.writeTags(),
-            this.seo.writeTags(),
-            this.og.writeTags(),
-            this.twitter.writeTags()
-        ].join(this.useNewLineBetweenEntries ? "\n" : "");
+            this.page.write(),
+            this.seo.write(),
+            this.og.write(),
+            this.twitter.write()
+        ].join(options.newLine ? "\n" : "");
     }
 }
 
-export default  { CommonMetaWriter, SEOMetaWriter, OpenGraphMetaWriter, TwitterMetaWriter, PageMetaWriter, GlobalConfig };
+export default  { CommonMetaTagWriter, SEOMetaTagWriter, OpenGraphMetaTagWriter, TwitterMetaTagWriter, PageMetaTagWriter, Config };
