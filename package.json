@@ -1,6 +1,6 @@
 {
   "name": "meta-tags-writer",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.1",
   "description": "A utility to write MetaTag blocks for a website html head.",
   "main": "src/meta-tags-writer.mjs",
   "types": "src/meta-tags-writer.d.ts",
