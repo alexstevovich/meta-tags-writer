@@ -64,6 +64,7 @@ export class OpenGraphMetaTags {
         this.image = undefined;
         this.url = undefined;
         this.type = "website";
+        this.siteName = undefined;
     }
 
     /**
@@ -77,6 +78,7 @@ export class OpenGraphMetaTags {
         if (this.image) tags.push(`<meta property="og:image" content="${this.image}">`);
         if (this.url) tags.push(`<meta property="og:url" content="${this.url}">`);
         if (this.type) tags.push(`<meta property="og:type" content="${this.type}">`);
+        if (this.siteName) tags.push(`<meta property="og:site_name" content="${this.siteName}">`);
         return tags.join(this.useNewLineBetweenEntries ? "\n" : "");
     }
 }
@@ -89,6 +91,8 @@ export class TwitterMetaTags {
         this.description = undefined;
         this.image = undefined;
         this.card = "summary_large_image";
+        this.creator = undefined;
+        this.site = undefined;
     }
 
     /**
@@ -101,6 +105,8 @@ export class TwitterMetaTags {
         if (this.title) tags.push(`<meta name="twitter:title" content="${this.title}">`);
         if (this.description) tags.push(`<meta name="twitter:description" content="${this.description}">`);
         if (this.image) tags.push(`<meta name="twitter:image" content="${this.image}">`);
+        if (this.creator) tags.push(`<meta name="twitter:creator" content="${this.creator}">`);
+        if (this.site) tags.push(`<meta name="twitter:site" content="${this.site}">`);
         return tags.join(this.useNewLineBetweenEntries ? "\n" : "");
     }
 }
