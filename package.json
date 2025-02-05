@@ -1,6 +1,6 @@
 {
   "name": "metatag-writer",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "A simple Node.js utility to write MetaTag script blocks for the head of website html.",
   "main": "src/metatag-writer.mjs",
   "types": "src/metatag-writer.d.ts",
@@ -10,35 +10,36 @@
     "import": "./src/metatag-writer.mjs",
     "require": "./src/metatag-writer.cjs"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/alexstevovich/metatag-writer-node.git"
   },
-"keywords": [
-  "meta tags",
-  "HTML meta",
-  "SEO",
-  "Open Graph",
-  "Twitter Cards",
-  "meta tag generator",
-  "SSR meta tags",
-  "SSG meta tags",
-  "dynamic meta tags",
-  "SEO optimization",
-  "web metadata",
-  "meta tag manager",
-  "meta tag writer",
-  "Facebook meta",
-  "LinkedIn meta",
-  "Discord meta",
-  "Twitter meta",
-  "head metadata",
-  "meta tag automation",
-  "structured metadata"
-],
+  "keywords": [
+    "meta tags",
+    "HTML meta",
+    "SEO",
+    "Open Graph",
+    "Twitter Cards",
+    "meta tag generator",
+    "SSR meta tags",
+    "SSG meta tags",
+    "dynamic meta tags",
+    "SEO optimization",
+    "web metadata",
+    "meta tag manager",
+    "meta tag writer",
+    "Facebook meta",
+    "LinkedIn meta",
+    "Discord meta",
+    "Twitter meta",
+    "head metadata",
+    "meta tag automation",
+    "structured metadata"
+  ],
   "author": "Alex Stevovich",
   "license": "MIT",
-  "files": ["src/"]
+  "files": [
+    "src/"
+  ]
 }
