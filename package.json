@@ -1,19 +1,19 @@
 {
-  "name": "metatag-writer",
+  "name": "meta-tags-writer",
   "version": "1.0.0-beta.1",
-  "description": "A simple Node.js utility to write MetaTag script blocks for the head of website html.",
-  "main": "src/metatag-writer.mjs",
-  "types": "src/metatag-writer.d.ts",
-  "module": "src/metatag-writer.mjs",
+  "description": "A utility to write MetaTag blocks for a website html head.",
+  "main": "src/meta-tags-writer.mjs",
+  "types": "src/meta-tags-writer.d.ts",
+  "module": "src/meta-tags-writer.mjs",
   "type": "module",
   "exports": {
-    "import": "./src/metatag-writer.mjs",
-    "require": "./src/metatag-writer.cjs"
+    "import": "./src/meta-tags-writer.mjs",
+    "require": "./src/meta-tags-writer.cjs"
   },
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexstevovich/metatag-writer-node.git"
+    "url": "https://github.com/alexstevovich/meta-tags-writer.git"
   },
   "keywords": [
     "meta tags",

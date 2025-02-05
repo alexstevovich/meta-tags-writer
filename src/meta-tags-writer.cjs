@@ -4,7 +4,7 @@
  * A lightweight, modular, and professional-grade utility for generating HTML meta tags.
  * Supports SEO, Open Graph (Facebook, LinkedIn, Discord), and Twitter meta.
  * 
- * Fully modular (use individual writers or the full CommonMetaTagWriter)
+ * Fully modular (use individual writers or the full CommonMetaTags)
  * Supports global formatting settings via Config
  * Provides clear and well-structured API methods
  * Designed for server-side rendering (SSR) or static site generation (SSG)
@@ -14,7 +14,7 @@
  */
 
 // Global Configuration
-export const Config = {
+const Config = {
     /**
      * Determines whether generated meta tags should be formatted with new lines.
      * Set to `false` for a compact single-line format.
@@ -23,7 +23,7 @@ export const Config = {
 };
 
 // SEO Meta Writer (Handles Core SEO Metadata)
-export class SEOMetaTagWriter {
+class SEOMetaTags {
     constructor() {
         this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
         this.title = undefined;
@@ -56,7 +56,7 @@ export class SEOMetaTagWriter {
 }
 
 // Open Graph Meta Writer (Handles Facebook, LinkedIn, Discord Previews)
-export class OpenGraphMetaTagWriter {
+class OpenGraphMetaTags {
     constructor() {
         this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
         this.ogTitle = undefined;
@@ -82,7 +82,7 @@ export class OpenGraphMetaTagWriter {
 }
 
 // Twitter Meta Writer (Handles Twitter Cards)
-export class TwitterMetaTagWriter {
+class TwitterMetaTags {
     constructor() {
         this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
         this.twitterTitle = undefined;
@@ -106,7 +106,7 @@ export class TwitterMetaTagWriter {
 }
 
 // Page Meta Writer (Handles Charset, Viewport, Theme Color)
-export class PageMetaTagWriter {
+class PageMetaTags {
     constructor() {
         this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
         this.charset = "UTF-8";
@@ -128,13 +128,13 @@ export class PageMetaTagWriter {
 }
 
 // Common Meta Writer (Combines All Meta Writers)
-export class CommonMetaTagWriter {
+class CommonMetaTags {
     constructor() {
         this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
-        this.page = new PageMetaTagWriter();
-        this.seo = new SEOMetaTagWriter();
-        this.og = new OpenGraphMetaTagWriter();
-        this.twitter = new TwitterMetaTagWriter();
+        this.page = new PageMetaTags();
+        this.seo = new SEOMetaTags();
+        this.og = new OpenGraphMetaTags();
+        this.twitter = new TwitterMetaTags();
     }
 
     /**
@@ -167,7 +167,7 @@ export class CommonMetaTagWriter {
      * Generates and returns all combined meta tags.
      * @returns {string} - The full set of meta tags.
      */
-    write({newLine = false}) {
+    write(options = {newLine:false}) {
         return [
             this.page.write(),
             this.seo.write(),
@@ -177,4 +177,4 @@ export class CommonMetaTagWriter {
     }
 }
 
-export default  { CommonMetaTagWriter, SEOMetaTagWriter, OpenGraphMetaTagWriter, TwitterMetaTagWriter, PageMetaTagWriter, Config };
+module.exports =  { CommonMetaTags, SEOMetaTags, OpenGraphMetaTags, TwitterMetaTags, PageMetaTags, Config };

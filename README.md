@@ -1,97 +1,148 @@
-# MetaTag Writer
+# Meta Tags Writer
 
-## Overview
-MetaTag Writer is a lightweight and modular library for generating HTML meta tags for SEO, Open Graph (Facebook, LinkedIn, Discord), and Twitter Cards. This package is designed for server-side rendering (SSR) or static site generation (SSG) and allows structured and programmatic meta tag management.
+A **lightweight**, **modular**, and **professional-grade** utility for generating **HTML meta tags**.  
+Supports **SEO**, **Open Graph (Facebook, LinkedIn, Discord)**, and **Twitter meta tags**.  
+
+Designed for **server-side rendering (SSR)** and **static site generation (SSG)**.
 
 ## Features
-- **Modular Structure**: Use individual meta writers or the full `CommonMetaWriter`.
-- **SEO Optimization**: Supports core SEO tags like title, description, robots, and canonical links.
-- **Social Media Previews**: Generates Open Graph (`og:`) and Twitter (`twitter:`) meta tags.
-- **Global Configuration**: Adjust output format using `GlobalConfig`.
-- **SSR & SSG Compatible**: Designed for server-side rendering or static HTML generation.
+
+✅ **Fully modular** – Use individual meta writers or the full `CommonMetaTags`.  
+✅ **Global formatting settings** – Control output formatting via `Config`.  
+✅ **Simple API** – Minimal setup required.  
+✅ **Works with both CommonJS (`require`) and ESM (`import`)**.  
+
+---
 
 ## Installation
+
 ```sh
-npm install metatag-writer
+npm install meta-tags-writer
 ```
+
+or using Yarn:
+
+```sh
+yarn add meta-tags-writer
+```
+
+---
 
 ## Usage
-### Importing the Library
-```javascript
-import { CommonMetaWriter } from 'metatag-writer';
 
-const metaWriter = new CommonMetaWriter();
-metaWriter.setTitleForAll("Example Page");
-metaWriter.setDescriptionForAll("This is an example description.");
-metaWriter.setPreviewImageForAll("https://example.com/image.jpg");
+### **🔹 Basic Example (CommonMetaTags)**
+```js
+import { CommonMetaTags } from "meta-tags-writer";
 
-console.log(metaWriter.generateMetaTags());
+const meta = new CommonMetaTags();
+meta.setTitleForAll("My Awesome Page");
+meta.setDescriptionForAll("This is an amazing page with great content.");
+meta.setPreviewImageForAll("https://example.com/image.png");
+
+console.log(meta.write({ newLine: true }));
 ```
 
-### Example Output
+**➞ Outputs:**
 ```html
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Example Page</title>
-<meta name="description" content="This is an example description.">
-<meta property="og:title" content="Example Page">
-<meta property="og:description" content="This is an example description.">
-<meta property="og:image" content="https://example.com/image.jpg">
-<meta name="twitter:title" content="Example Page">
-<meta name="twitter:description" content="This is an example description.">
-<meta name="twitter:image" content="https://example.com/image.jpg">
+<title>My Awesome Page</title>
+<meta name="description" content="This is an amazing page with great content.">
+<meta property="og:title" content="My Awesome Page">
+<meta property="og:description" content="This is an amazing page with great content.">
+<meta property="og:image" content="https://example.com/image.png">
+<meta name="twitter:title" content="My Awesome Page">
+<meta name="twitter:description" content="This is an amazing page with great content.">
+<meta name="twitter:image" content="https://example.com/image.png">
 ```
+
+---
 
 ## API Reference
-### Global Configuration
-```javascript
-import { GlobalConfig } from 'metatag-writer';
-GlobalConfig.useNewLineBetweenEntries = false;
+
+### **🔹 Global Configuration (`Config`)**
+`Config` allows you to set global formatting rules.
+```js
+import { Config } from "meta-tags-writer";
+
+Config.useNewLineBetweenEntries = false; // Default: true
 ```
 
-### Class: `SEOMetaWriter`
-Handles core SEO metadata.
-```javascript
-const seo = new SEOMetaWriter();
-seo.title = "Example Title";
-console.log(seo.writeTags());
+---
+
+### ** Class: `SEOMetaTags` (SEO Metadata)**
+Handles **title, description, keywords, robots, and canonical tags**.
+
+#### **Example**
+```js
+import { SEOMetaTags } from "meta-tags-writer";
+
+const seo = new SEOMetaTags();
+seo.title = "SEO Optimized Page";
+seo.description = "Boost your rankings with great SEO metadata!";
+seo.canonical = "https://example.com";
+
+console.log(seo.write());
 ```
 
-### Class: `OpenGraphMetaWriter`
-Generates Open Graph meta tags for social sharing.
-```javascript
-const og = new OpenGraphMetaWriter();
-og.ogTitle = "Example Title";
+** Outputs:**
+```html
+<title>SEO Optimized Page</title>
+<meta name="description" content="Boost your rankings with great SEO metadata!">
+<link rel="canonical" href="https://example.com">
+```
+
+---
+
+### **🔹 Class: `OpenGraphMetaTags` (Facebook, LinkedIn, Discord)**
+Handles **og:title, og:description, og:image, og:url, og:type**.
+
+#### **Example**
+```js
+import { OpenGraphMetaTags } from "meta-tags-writer";
+
+const og = new OpenGraphMetaTags();
+og.ogTitle = "Awesome Article";
+og.ogDescription = "Learn the best tips for success!";
 og.ogImage = "https://example.com/image.jpg";
-console.log(og.writeTags());
+
+console.log(og.write());
 ```
 
-### Class: `TwitterMetaWriter`
-Handles Twitter Card meta tags.
-```javascript
-const twitter = new TwitterMetaWriter();
-twitter.twitterCard = "summary_large_image";
-twitter.twitterTitle = "Example Title";
-console.log(twitter.writeTags());
+---
+
+### ** Class: `TwitterMetaTags` (Twitter Cards)**
+Handles **twitter:title, twitter:description, twitter:image, twitter:card**.
+
+#### **Example**
+```js
+import { TwitterMetaTags } from "meta-tags-writer";
+
+const twitter = new TwitterMetaTags();
+twitter.twitterTitle = "Breaking News!";
+twitter.twitterDescription = "Big things are happening!";
+twitter.twitterImage = "https://example.com/news.jpg";
+
+console.log(twitter.write());
 ```
 
-### Class: `PageMetaWriter`
-Manages page-related meta tags.
-```javascript
-const page = new PageMetaWriter();
-page.themeColor = "#ffffff";
-console.log(page.writeTags());
+---
+
+## Advanced Usage
+
+### **🔹 Using `CommonMetaTags` for Full Meta Generation**
+```js
+import { CommonMetaTags } from "meta-tags-writer";
+
+const meta = new CommonMetaTags();
+meta.setTitleForAll("Complete Meta Solution");
+meta.setDescriptionForAll("Handles SEO, Open Graph, and Twitter Cards.");
+meta.setPreviewImageForAll("https://example.com/full-meta.png");
+
+console.log(meta.write({ newLine: false }));
 ```
 
-### Class: `CommonMetaWriter`
-Combines all meta writers for convenience.
-```javascript
-const meta = new CommonMetaWriter();
-meta.setTitleForAll("Example Title");
-meta.setDescriptionForAll("This is an example.");
-meta.setPreviewImageForAll("https://example.com/image.jpg");
-console.log(meta.generateMetaTags());
-```
+---
 
 ## License
-This project is licensed under the MIT License.
+
+Released under the **MIT License**.
+
