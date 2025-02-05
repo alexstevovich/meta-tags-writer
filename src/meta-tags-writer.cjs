@@ -59,11 +59,11 @@ class SEOMetaTags {
 class OpenGraphMetaTags {
     constructor() {
         this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
-        this.ogTitle = undefined;
-        this.ogDescription = undefined;
-        this.ogImage = undefined;
-        this.ogUrl = undefined;
-        this.ogType = "website";
+        this.title = undefined;
+        this.description = undefined;
+        this.image = undefined;
+        this.url = undefined;
+        this.type = "website";
     }
 
     /**
@@ -72,11 +72,11 @@ class OpenGraphMetaTags {
      */
     write() {
         const tags = [];
-        if (this.ogTitle) tags.push(`<meta property="og:title" content="${this.ogTitle}">`);
-        if (this.ogDescription) tags.push(`<meta property="og:description" content="${this.ogDescription}">`);
-        if (this.ogImage) tags.push(`<meta property="og:image" content="${this.ogImage}">`);
-        if (this.ogUrl) tags.push(`<meta property="og:url" content="${this.ogUrl}">`);
-        if (this.ogType) tags.push(`<meta property="og:type" content="${this.ogType}">`);
+        if (this.title) tags.push(`<meta property="og:title" content="${this.title}">`);
+        if (this.description) tags.push(`<meta property="og:description" content="${this.description}">`);
+        if (this.image) tags.push(`<meta property="og:image" content="${this.image}">`);
+        if (this.url) tags.push(`<meta property="og:url" content="${this.url}">`);
+        if (this.type) tags.push(`<meta property="og:type" content="${this.type}">`);
         return tags.join(this.useNewLineBetweenEntries ? "\n" : "");
     }
 }
@@ -85,10 +85,10 @@ class OpenGraphMetaTags {
 class TwitterMetaTags {
     constructor() {
         this.useNewLineBetweenEntries = Config.useNewLineBetweenEntries;
-        this.twitterTitle = undefined;
-        this.twitterDescription = undefined;
-        this.twitterImage = undefined;
-        this.twitterCard = "summary_large_image";
+        this.title = undefined;
+        this.description = undefined;
+        this.image = undefined;
+        this.card = "summary_large_image";
     }
 
     /**
@@ -97,10 +97,10 @@ class TwitterMetaTags {
      */
     write() {
         const tags = [];
-        if (this.twitterCard) tags.push(`<meta name="twitter:card" content="${this.twitterCard}">`);
-        if (this.twitterTitle) tags.push(`<meta name="twitter:title" content="${this.twitterTitle}">`);
-        if (this.twitterDescription) tags.push(`<meta name="twitter:description" content="${this.twitterDescription}">`);
-        if (this.twitterImage) tags.push(`<meta name="twitter:image" content="${this.twitterImage}">`);
+        if (this.card) tags.push(`<meta name="twitter:card" content="${this.card}">`);
+        if (this.title) tags.push(`<meta name="twitter:title" content="${this.title}">`);
+        if (this.description) tags.push(`<meta name="twitter:description" content="${this.description}">`);
+        if (this.image) tags.push(`<meta name="twitter:image" content="${this.image}">`);
         return tags.join(this.useNewLineBetweenEntries ? "\n" : "");
     }
 }
@@ -142,8 +142,8 @@ class CommonMetaTags {
      */
     setTitleForAll(title) {
         this.seo.title = title;
-        this.og.ogTitle = title;
-        this.twitter.twitterTitle = title;
+        this.og.title = title;
+        this.twitter.title = title;
     }
 
     /**
@@ -151,16 +151,16 @@ class CommonMetaTags {
      */
     setDescriptionForAll(description) {
         this.seo.description = description;
-        this.og.ogDescription = description;
-        this.twitter.twitterDescription = description;
+        this.og.description = description;
+        this.twitter.description = description;
     }
 
     /**
      * Sets the preview image across OpenGraph & Twitter.
      */
-    setPreviewImageForAll(imageUrl) {
-        this.og.ogImage = imageUrl;
-        this.twitter.twitterImage = imageUrl;
+    setImageForAll(imageUrl) {
+        this.og.image = imageUrl;
+        this.twitter.image = imageUrl;
     }
 
     /**
@@ -177,4 +177,4 @@ class CommonMetaTags {
     }
 }
 
-module.exports =  { CommonMetaTags, SEOMetaTags, OpenGraphMetaTags, TwitterMetaTags, PageMetaTags, Config };
+module.exports = { CommonMetaTags, SEOMetaTags, OpenGraphMetaTags, TwitterMetaTags, PageMetaTags, Config };

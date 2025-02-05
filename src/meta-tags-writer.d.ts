@@ -35,20 +35,20 @@ export declare class SEOMetaTags implements MetaWriter {
 
 /** Open Graph Meta Writer */
 export declare class OpenGraphMetaTags implements MetaWriter {
-    ogTitle?: string;
-    ogDescription?: string;
-    ogImage?: string;
-    ogUrl?: string;
-    ogType: string;
+    title?: string;
+    description?: string;
+    image?: string;
+    url?: string;
+    type: string;
     write(): string;
 }
 
 /** Twitter Meta Writer */
 export declare class TwitterMetaTags implements MetaWriter {
-    twitterTitle?: string;
-    twitterDescription?: string;
-    twitterImage?: string;
-    twitterCard: string;
+    title?: string;
+    description?: string;
+    image?: string;
+    card: string;
     write(): string;
 }
 
@@ -80,7 +80,7 @@ export declare class CommonMetaTags {
     setDescriptionForAll(description: string): void;
 
     /** Sets the preview image across OpenGraph & Twitter */
-    setPreviewImageForAll(imageUrl: string): void;
+    setImageForAll(imageUrl: string): void;
 
     /** Generates and returns all combined meta tags */
     write(options?: WriteOptions): string;

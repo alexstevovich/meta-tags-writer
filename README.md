@@ -135,7 +135,7 @@ import { CommonMetaTags } from "meta-tags-writer";
 const meta = new CommonMetaTags();
 meta.setTitleForAll("Complete Meta Solution");
 meta.setDescriptionForAll("Handles SEO, Open Graph, and Twitter Cards.");
-meta.setPreviewImageForAll("https://example.com/full-meta.png");
+meta.setImageForAll("https://example.com/full-meta.png");
 
 console.log(meta.write({ newLine: false }));
 ```
